@@ -1,0 +1,27 @@
+<%- include('./includes/header.ejs') %>
+<H1>ألهم الآخرين بحكمتك</H1>
+<form action="/new" method="post" class="form">
+     <label for="author">اسمك ( اختياري )</label>
+     <input type="text" name="author" value="Anonyme" class="input">
+     <br>
+     <label for="advice">نصيحتك</label>
+     <textarea name="advice" id="advice" cols="30" rows="10" oninput="limitCharacters(120)" maxlength="120"></textarea>
+     <small id="charCount">100 كلمة باقية</small>
+     <br> <br><br>
+     <button type="submit" class="btn">انشر</button>
+     
+</form>
+<script>
+     function limitCharacters(maxLength) {
+     const textarea = document.getElementById("advice");
+     const charCountDisplay = document.getElementById("charCount");
+     const text = textarea.value;
+     const remainingChars = maxLength - text.length;
+     charCountDisplay.textContent = `${remainingChars} حرف باقي`;
+     if (remainingChars < 0) {
+     textarea.value = text.slice(0, maxLength);
+     }
+     }
+
+</script>
+<%- include('./includes/footer.ejs') %>
